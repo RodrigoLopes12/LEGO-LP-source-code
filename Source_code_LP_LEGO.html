@@ -1,0 +1,418 @@
+import { useState } from "react";
+import { Search, User, ShoppingCart, Menu, Star, Heart, ShoppingBag } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import MeetingScheduler from "@/components/MeetingScheduler";
+import heroImage from "@/assets/hero-minifigures.jpg";
+import starwarsAdvent from "@/assets/product-starwars-advent.jpg";
+import minecraftAdvent from "@/assets/product-minecraft-advent.jpg";
+import nikeLego from "@/assets/product-nike-lego.jpg";
+import spaceShuttle from "@/assets/product-space-shuttle.jpg";
+import walleGallery from "@/assets/gallery-walle.jpg";
+import pinkCarGallery from "@/assets/gallery-pink-car.jpg";
+import legoHouseGallery from "@/assets/gallery-lego-house.webp";
+import legoHPGame from "@/assets/lego-hp-game-3d-box.jpg";
+import legoSWGame from "@/assets/lego-sw-game-3d-box.jpg";
+import legoLogo from "@/assets/lego-logo-official.png";
+import legoCozyHouse from "@/assets/gallery-lego-cozy-house.png";
+
+const Index = () => {
+  const [selectedGalleryImage, setSelectedGalleryImage] = useState<string | null>(null);
+
+  const categories = [
+    { label: "New", color: "bg-lego-red", icon: "🆕" },
+    { label: "Exclusives", color: "bg-lego-orange", icon: "⭐" },
+    { label: "Offers", color: "bg-lego-yellow", icon: "%", textColor: "text-lego-navy" },
+    { label: "All sets", color: "bg-blue-500", icon: "🧱" },
+    
+    { label: "Gaming", color: "bg-purple-600", icon: "🎮" }
+  ];
+
+  const products = [
+    {
+      id: 1,
+      name: "LEGO® Star Wars® Advent Calendar 2025",
+      price: "£29.99",
+      rating: 5,
+      image: starwarsAdvent,
+      ageTag: "7+",
+      pieces: 300
+    },
+    {
+      id: 2,
+      name: "LEGO® Minecraft® Advent Calendar 2025",
+      price: "£29.99",
+      rating: 4,
+      image: minecraftAdvent,
+      ageTag: "8+",
+      pieces: 263
+    },
+    {
+      id: 3,
+      name: "Nike Air Jordan LEGO Edition",
+      price: "£76.99",
+      rating: 5,
+      image: nikeLego,
+      ageTag: "18+",
+      pieces: 645
+    },
+    {
+      id: 4,
+      name: "LEGO® Space Shuttle Discovery",
+      price: "£169.99",
+      rating: 5,
+      image: spaceShuttle,
+      ageTag: "18+",
+      pieces: 2354
+    }
+  ];
+
+  const galleryImages = [
+    { src: walleGallery, alt: "WALL-E made with LEGO" },
+    { src: pinkCarGallery, alt: "Creative pink car in LEGO" },
+    { src: legoCozyHouse, alt: "Cosy house built with LEGO bricks" }
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Promo Bar */}
+      <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm font-semibold">
+        New — see the latest in LEGO including new Harry Potter™ Minifigures
+      </div>
+
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+        <div className="container max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between gap-4">
+            {/* Logo */}
+            <div className="flex items-center">
+              <img src={legoLogo} alt="LEGO" className="h-10 w-auto" />
+            </div>
+
+            {/* Search Bar */}
+            <div className="hidden md:flex flex-1 max-w-2xl mx-8">
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Input
+                  placeholder="Search sets, themes, product ID..."
+                  className="pl-10 pr-4 py-2 w-full rounded-full bg-lego-gray-100 border-0 focus-visible:ring-primary"
+                />
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="icon" className="hidden sm:flex">
+                <User className="h-5 w-5" />
+                <span className="sr-only">Account</span>
+              </Button>
+              <Button variant="ghost" size="icon">
+                <ShoppingCart className="h-5 w-5" />
+                <span className="sr-only">Cart</span>
+              </Button>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Menu</span>
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile Search */}
+          <div className="md:hidden mt-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input
+                placeholder="Search..."
+                className="pl-10 pr-4 py-2 w-full rounded-full bg-lego-gray-100 border-0"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        {/* Hero Section */}
+        <section className="relative gradient-hero py-16 md:py-24 overflow-hidden">
+          <div className="container max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                  See what's new
+                </h1>
+                <p className="text-xl text-muted-foreground max-w-lg">
+                  Discover the latest LEGO® releases including exclusive collections and new sets for fans of all ages.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button className="btn-primary">Shop collection</Button>
+                  <Button variant="outline" className="btn-secondary">Shop all new sets</Button>
+                </div>
+              </div>
+              <div className="relative">
+                <img
+                  src={heroImage}
+                  alt="LEGO Harry Potter Minifigures"
+                  className="w-full h-auto rounded-2xl shadow-lg"
+                  loading="eager"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Categories */}
+        <section className="py-8">
+          <div className="container max-w-7xl mx-auto px-4">
+            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+              {categories.map((category, index) => (
+                <button
+                  key={index}
+                  className={`flex-shrink-0 ${category.color} ${category.textColor || 'text-white'} 
+                    rounded-xl p-4 min-w-[120px] text-center transition-transform hover:scale-105 
+                    focus:outline-none focus-visible:ring-[3px] focus-visible:ring-primary/30`}
+                >
+                  <div className="text-2xl mb-2">{category.icon}</div>
+                  <div className="font-semibold text-sm">{category.label}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Products */}
+        <section className="py-16">
+          <div className="container max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8">Find the perfect set</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {products.map((product) => (
+                <div key={product.id} className="card-lego group cursor-pointer relative bg-white rounded-xl border border-border p-4 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="aspect-square bg-lego-gray-100 rounded-lg mb-4 overflow-hidden relative">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                    <Button size="icon" variant="ghost" className="absolute top-2 right-2 h-8 w-8 bg-white/80 hover:bg-white">
+                      <Heart className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <h3 className="font-semibold text-lg mb-2 line-clamp-2">{product.name}</h3>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-4 w-4 ${
+                            i < product.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-sm text-muted-foreground">
+                      {product.ageTag} • {product.pieces} pcs
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xl font-bold">{product.price}</span>
+                  </div>
+                  <Button className="w-full btn-primary">
+                    <ShoppingBag className="h-4 w-4 mr-2" />
+                    Add to Bag
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery */}
+        <section className="py-16 bg-lego-gray-100">
+          <div className="container max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8">See what everyone's building</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {galleryImages.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedGalleryImage(image.src)}
+                  className="aspect-square rounded-xl overflow-hidden group focus:outline-none focus-visible:ring-[3px] focus-visible:ring-primary/30"
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Spotlight */}
+        <section className="py-16">
+          <div className="container max-w-7xl mx-auto px-4">
+            <div className="gradient-spotlight rounded-2xl p-8 md:p-12 text-white">
+              <div className="max-w-4xl mx-auto text-center space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold">This week's spotlight</h2>
+                <p className="text-xl opacity-90 max-w-2xl mx-auto">
+                  A closer look at LEGO® moments worth discovering — from seasonal fun to special moments.
+                </p>
+                <div className="flex justify-center">
+                  <Button className="bg-lego-yellow text-lego-navy hover:bg-lego-yellow/90">
+                    Learn more
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Gaming Section */}
+        <section className="py-16">
+          <div className="container max-w-7xl mx-auto px-4">
+            <div className="gradient-gaming rounded-2xl p-8 md:p-12 text-white">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div className="space-y-6">
+                  <h2 className="text-3xl md:text-4xl font-bold">Take play to the next level</h2>
+                  <p className="text-xl opacity-90">
+                    Explore our digital games and applications that bring your LEGO® builds to digital life.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button className="bg-lego-yellow text-lego-navy hover:bg-lego-yellow/90">
+                      Download app
+                    </Button>
+                  </div>
+                </div>
+                <div className="flex gap-4 justify-center items-center">
+                  <img
+                    src={legoHPGame}
+                    alt="LEGO Harry Potter Game"
+                    className="w-48 h-auto rounded-lg shadow-md"
+                  />
+                  <img
+                    src={legoSWGame}
+                    alt="LEGO Star Wars Game"
+                    className="w-48 h-auto rounded-lg shadow-md"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Meeting Scheduler */}
+        <MeetingScheduler />
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-lego-navy text-white py-16">
+        <div className="container max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div className="space-y-4">
+              <img src={legoLogo} alt="LEGO" className="h-10 w-auto" />
+              <p className="text-white/80">
+                Explore our shop to find sets, ideas and inspiration.
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              <h4 className="font-bold">Support</h4>
+              <ul className="space-y-2 text-white/80">
+                <li><a href="#" className="hover:text-white transition-colors">Contact us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Find building instructions</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Delivery & returns</a></li>
+              </ul>
+            </div>
+            
+            <div className="space-y-4">
+              <h4 className="font-bold">Discover more</h4>
+              <ul className="space-y-2 text-white/80">
+                <li><a href="#" className="hover:text-white transition-colors">Get gifting</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Read about it</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Builder app</a></li>
+              </ul>
+            </div>
+            
+            <div className="space-y-4">
+              <h4 className="font-bold">Subscribe</h4>
+              <p className="text-white/80 text-sm">Get the latest news</p>
+              <div className="flex gap-2">
+                <Input
+                  type="email"
+                  placeholder="Your email"
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                />
+                <Button className="btn-primary">Subscribe</Button>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-white/20 pt-8 text-center text-white/60 text-sm">
+            <p>© LEGO Group — Made with ❤️ in the UK.</p>
+          </div>
+          
+          {/* FAQ Section */}
+          <div className="border-t border-white/20 pt-8 mt-8">
+            <h3 className="text-xl font-bold text-white mb-6 text-center">Frequently Asked Questions</h3>
+            <div className="max-w-4xl mx-auto space-y-6">
+              <div>
+                <h4 className="font-bold text-white mb-2">How long does delivery take?</h4>
+                <p className="text-white/80">Standard delivery within the UK usually takes 3–5 working days. Express delivery options are also available at checkout.</p>
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-white mb-2">Can I track my LEGO order?</h4>
+                <p className="text-white/80">Yes, once your order has been dispatched, you will receive an email with tracking details so you can follow your parcel's journey.</p>
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-white mb-2">What is the returns policy?</h4>
+                <p className="text-white/80">You can return unopened LEGO products within 35 days of purchase for a full refund. Please keep your receipt or order confirmation.</p>
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-white mb-2">Are LEGO sets suitable for young children?</h4>
+                <p className="text-white/80">LEGO offers a wide range of sets designed for different age groups. Look for the recommended age printed on each box to find the right one.</p>
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-white mb-2">Do you offer digital building instructions?</h4>
+                <p className="text-white/80">Yes, many LEGO sets come with free digital instructions available through the LEGO Builder app and our website.</p>
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-white mb-2">Can I buy replacement bricks?</h4>
+                <p className="text-white/80">Absolutely. If you lose or damage a piece, you can order replacement bricks through the "Pick a Brick" service on LEGO.com.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Lightbox Modal */}
+      {selectedGalleryImage && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedGalleryImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-full">
+            <img
+              src={selectedGalleryImage}
+              alt="Gallery image"
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
+            <Button
+              onClick={() => setSelectedGalleryImage(null)}
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white"
+              size="icon"
+            >
+              ✕
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Index;
